@@ -27,3 +27,5 @@ Tech stacks used:
 - Javascript
 - TailwindCSS
 - Vercel (hosting)
+
+To simulate a tie, press shift + D to toggle the force tie button.
