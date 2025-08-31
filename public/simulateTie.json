@@ -1,0 +1,79 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "cards": [
+        { "suit": "hearts", "value": "A" },
+        { "suit": "spades", "value": "K" },
+        { "suit": "clubs", "value": "2" },
+        { "suit": "diamonds", "value": "3" },
+        { "suit": "hearts", "value": "5" }
+      ],
+      "score": 34,
+      "suitScore": 48
+    },
+    {
+      "id": 2,
+      "cards": [
+        { "suit": "hearts", "value": "A" },
+        { "suit": "spades", "value": "K" },
+        { "suit": "clubs", "value": "2" },
+        { "suit": "diamonds", "value": "3" },
+        { "suit": "hearts", "value": "5" }
+      ],
+      "score": 34,
+      "suitScore": 48
+    },
+    {
+      "id": 3,
+      "cards": [
+        { "suit": "clubs", "value": "2" },
+        { "suit": "diamonds", "value": "3" },
+        { "suit": "spades", "value": "4" },
+        { "suit": "hearts", "value": "2" },
+        { "suit": "clubs", "value": "3" }
+      ],
+      "score": 14,
+      "suitScore": null
+    },
+    {
+      "id": 4,
+      "cards": [
+        { "suit": "diamonds", "value": "2" },
+        { "suit": "hearts", "value": "3" },
+        { "suit": "spades", "value": "8" },
+        { "suit": "clubs", "value": "5" },
+        { "suit": "diamonds", "value": "6" }
+      ],
+      "score": 24,
+      "suitScore": null
+    },
+    {
+      "id": 5,
+      "cards": [
+        { "suit": "clubs", "value": "4" },
+        { "suit": "clubs", "value": "3" },
+        { "suit": "hearts", "value": "4" },
+        { "suit": "diamonds", "value": "5" },
+        { "suit": "spades", "value": "6" }
+      ],
+      "score": 22,
+      "suitScore": null
+    },
+    {
+      "id": 6,
+      "cards": [
+        { "suit": "hearts", "value": "2" },
+        { "suit": "diamonds", "value": "3" },
+        { "suit": "spades", "value": "4" },
+        { "suit": "clubs", "value": "5" },
+        { "suit": "hearts", "value": "6" }
+      ],
+      "score": 20,
+      "suitScore": null
+    }
+  ],
+  "highestScore": 34,
+  "winners": [1, 2],
+  "started": true
+}
