@@ -1,6 +1,7 @@
 <template>
-  <div class="max-w-7xl mx-auto font-sans relative">
+  <div class="w-full font-sans relative">
 
+    <!-- Start Screen -->
     <div v-if="!gameState.started"
       class="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 px-4">
       <div
@@ -34,6 +35,7 @@
       </div>
     </div>
 
+    <!-- Game Screen -->
     <div v-else
       class="relative min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 px-6 py-10 text-white">
       <button @click="gameState.started = false"
@@ -61,54 +63,55 @@
         </button>
       </div>
 
-      <div v-if="gameState.winners.length > 0"
-        class="bg-black/50 border-2 border-yellow-500 rounded-xl p-6 text-center mb-8 shadow-lg">
-        <div v-if="gameState.winners.length === 1">
-          <h2 class="text-2xl font-bold text-yellow-400 mb-2">
-            🏆 Winner: Player {{ gameState.winners[0] }}
-          </h2>
-          <p class="text-gray-200">Score: {{ getPlayerScore(gameState.winners[0]) }}</p>
-          <p v-if="getPlayerSuitScore(gameState.winners[0])" class="text-gray-200">Suit Score: {{
-            getPlayerSuitScore(gameState.winners[0]) }}</p>
-        </div>
-        <div v-else>
-          <h2 class="text-2xl font-bold text-yellow-400 mb-2">
-            🤝 Tie: {{gameState.winners.map(id => `Player ${id}`).join(' and ')}}
-          </h2>
-          <p class="text-gray-200">Score: {{ getPlayerScore(gameState.winners[0]) }}</p>
-          <p v-if="getPlayerSuitScore(gameState.winners[0])" class="text-gray-200">Suit Score: {{
-            getPlayerSuitScore(gameState.winners[0]) }}</p>
-        </div>
-      </div>
-
-      <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        <div v-for="player in gameState.players" :key="player.id" :class="[
-          'border-2 rounded-xl p-5 bg-black/60 backdrop-blur-md shadow-lg',
-          gameState.winners.includes(player.id)
-            ? 'border-yellow-500'
-            : 'border-gray-700'
-        ]">
-
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-bold text-white">Player {{ player.id }}</h3>
-            <span v-if="gameState.winners.includes(player.id)" class="text-yellow-400 text-xl">👑</span>
+      <div class="max-w-6xl mx-auto px-4 py-10">
+        <div v-if="gameState.winners.length > 0"
+          class="bg-black/50 border-2 border-yellow-500 rounded-xl p-6 text-center mb-8 shadow-lg">
+          <div v-if="gameState.winners.length === 1">
+            <h2 class="text-2xl font-bold text-yellow-400 mb-2">
+              🏆 Winner: Player {{ gameState.winners[0] }}
+            </h2>
+            <p class="text-gray-200">Score: {{ getPlayerScore(gameState.winners[0]) }}</p>
+            <p v-if="getPlayerSuitScore(gameState.winners[0])" class="text-gray-200">Suit Score: {{
+              getPlayerSuitScore(gameState.winners[0]) }}</p>
           </div>
+          <div v-else>
+            <h2 class="text-2xl font-bold text-yellow-400 mb-2">
+              🤝 Tie: {{gameState.winners.map(id => `Player ${id}`).join(' and ')}}
+            </h2>
+            <p class="text-gray-200">Score: {{ getPlayerScore(gameState.winners[0]) }}</p>
+            <p v-if="getPlayerSuitScore(gameState.winners[0])" class="text-gray-200">Suit Score: {{
+              getPlayerSuitScore(gameState.winners[0]) }}</p>
+          </div>
+        </div>
 
-          <div class="flex flex-wrap gap-2 justify-center mb-4">
-            <div v-for="(card, index) in player.cards" :key="`${card.suit}-${card.value}-${card.deckNumber}-${index}`"
-              class="w-12 h-16 border rounded-md flex items-center justify-center font-semibold text-sm bg-white shadow-md"
-              :class="{
-                'text-red-600': card.suit === 'hearts' || card.suit === 'diamonds',
-                'text-gray-900': card.suit === 'spades' || card.suit === 'clubs',
-              }">
-              {{ formatCard(card) }}
+        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          <div v-for="player in gameState.players" :key="player.id" :class="[
+            'border-2 rounded-xl p-5 bg-black/60 backdrop-blur-md shadow-lg',
+            gameState.winners.includes(player.id)
+              ? 'border-yellow-500'
+              : 'border-gray-700'
+          ]">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-bold text-white">Player {{ player.id }}</h3>
+              <span v-if="gameState.winners.includes(player.id)" class="text-yellow-400 text-xl">👑</span>
             </div>
-          </div>
 
-          <div class="flex flex-col gap-2 text-sm">
-            <div class="bg-gray-800 rounded px-3 py-1 text-gray-200">Score: {{ player.score }}</div>
-            <div v-if="player.suitScore" class="bg-gray-800 rounded px-3 py-1 text-gray-200">
-              Suit Score: {{ player.suitScore }}
+            <div class="flex flex-wrap gap-2 justify-center mb-4">
+              <div v-for="(card, index) in player.cards" :key="`${card.suit}-${card.value}-${card.deckNumber}-${index}`"
+                class="w-12 h-16 border rounded-md flex items-center justify-center font-semibold text-sm bg-white shadow-md"
+                :class="{
+                  'text-red-600': card.suit === 'hearts' || card.suit === 'diamonds',
+                  'text-gray-900': card.suit === 'spades' || card.suit === 'clubs',
+                }">
+                {{ formatCard(card) }}
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2 text-sm">
+              <div class="bg-gray-800 rounded px-3 py-1 text-gray-200">Score: {{ player.score }}</div>
+              <div v-if="player.suitScore" class="bg-gray-800 rounded px-3 py-1 text-gray-200">
+                Suit Score: {{ player.suitScore }}
+              </div>
             </div>
           </div>
         </div>
